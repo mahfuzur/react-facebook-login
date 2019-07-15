@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import * as axios from 'axios';
 import JSONPretty from 'react-json-pretty';
-
-import logo from './logo.svg';
 import './App.css';
 import 'react-json-pretty/themes/monikai.css';
 
@@ -28,24 +26,31 @@ function App() {
     console.log("componentClicked", response);
   }
 
+
+
   return (
     <div>
       <div className="App">
         <header className="App-header">
           <div className='container'>
             <FacebookLogin
+              version="3.3"
               appId="372579823236596"
               autoLoad={false}
               fields="name,email,picture"
+              scope="public_profile,email,user_birthday,pages_show_list,publish_pages,manage_pages"
               onClick={componentClicked}
               callback={responseFacebook}
             />
+            <div className="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
           </div>
 
         </header>
 
       </div>
-      <div className='container'><JSONPretty data={token}></JSONPretty></div>
+      <div className='container'>
+        <JSONPretty data={token}></JSONPretty>
+      </div>
     </div>
 
 
